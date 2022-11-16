@@ -2,9 +2,7 @@
 #include <utility> // para std::swap
 #include "circuito.h"
 
-///
-/// As strings que definem os tipos de porta
-///
+/// As strings que definem os tipos de porta ///
 
 // Funcao auxiliar que testa se uma string com nome de porta eh valida
 // Caso necessario, converte os caracteres da string para maiusculas
@@ -47,6 +45,10 @@ ptr_Port allocPort(std::string& Tipo)
 /// ***********************
 /// Inicializacao e finalizacao
 /// ***********************
+Circuito::Circuito(){} //construtor default
+Circuito::Circuito(const Circuito& C){} //construtor por copia
+Circuito::Circuito(Circuito&& C){} //construtor por movimento
+Circuito::~Circuito(){} //destrutor
 
 falta_fazer();
 
