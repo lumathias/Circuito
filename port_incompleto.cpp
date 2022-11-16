@@ -225,9 +225,136 @@ std::ostream& operator<<(std::ostream& O, const Port& X)
   return X.imprimir(O);
 };
 
-///
-/// AS OUTRAS PORTS
-///
+///PORT NOT
+//Construtor
+Port_NOT::Port_NOT(){}
+//outras funções
+ptr_Port Port_NOT::clone() const{
+    return new Port_NOT(*this);
+}
 
-falta_fazer();
+std::string Port_NOT::getName() const{
+    return "NT";
+}
+
+///Falta algo aqui
+
+//Falta implementar/entender o simular
+void Port_NOT::simular(const std::vector<bool3S>& in_port){
+    do{
+        tudo_def = true;
+        alguma_def = false;
+        for(int i = 0; i<Port_NOT.getNumInputs(); i++){
+            if(ports[i].out_port==UNDEF){
+                for(int i = 0; i<ports[i].N_in; j++){
+                    id = ports[i].id_in[j];
+                    if(id>0) in_port[j] = ports[id-1].out_port;
+                    else in_port[j] = in_circ[-id-1];
+                }
+                ports[i].simular(in_port);
+                if(ports[i].out_port==UNDEF) tudo_def = false;
+                else alguma_def = true;
+            }
+        }
+    }while(!tudo_def && alguma_def);
+}
+///FIM PORT NOT
+
+///PORT AND
+//Construtor
+Port_AND::Port_AND(){}
+//outras funções
+ptr_Port Port_AND::clone() const{
+    return new Port_AND(*this);
+}
+
+std::string Port_AND::getName() const{
+    return "AN";
+}
+
+//Falta implementar o simular
+void Port_AND::simular(const std::vector<bool3S>& in_port);
+///FIM PORT AND
+
+///PORT NAND
+//Construtor
+Port_NAND::Port_NAND(){}
+//outras funções
+ptr_Port Port_NAND::clone() const{
+    return new Port_NAND(*this);
+}
+
+std::string Port_NAND::getName() const{
+    return "NA";
+}
+
+//Falta implementar o simular
+void Port_NAND::simular(const std::vector<bool3S>& in_port);
+///FIM PORT NAND
+
+///PORT OR
+//Construtor
+Port_OR::Port_OR(){}
+//outras funções
+ptr_Port Port_OR::clone() const{
+    return new Port_OR(*this);
+}
+
+std::string Port_OR::getName() const{
+    return "OR";
+}
+
+//Falta implementar o simular
+void Port_OR::simular(const std::vector<bool3S>& in_port);
+///FIM PORT OR
+
+///PORT NOR
+//Construtor
+Port_NOR::Port_NOR(){}
+//outras funções
+ptr_Port Port_NOR::clone() const{
+    return new Port_NOR(*this);
+}
+
+std::string Port_NOR::getName() const{
+    return "NO";
+}
+
+//Falta implementar o simular
+void Port_NOR::simular(const std::vector<bool3S>& in_port);
+///FIM PORT NOR
+
+///PORT XOR
+//Construtor
+Port_XOR::Port_XOR(){}
+//outras funções
+ptr_Port Port_XOR::clone() const{
+    return new Port_XOR(*this);
+}
+
+std::string Port_XOR::getName() const{
+    return "XO";
+}
+
+//Falta implementar o simular
+void Port_XOR::simular(const std::vector<bool3S>& in_port);
+///FIM PORT XOR
+
+///PORT NXOR
+//Construtor
+Port_NXOR::Port_NXOR(){}
+//outras funções
+ptr_Port Port_NXOR::clone() const{
+    return new Port_NXOR(*this);
+}
+
+std::string Port_NXOR::getName() const{
+    return "NX";
+}
+
+//Falta implementar o simular
+void Port_NXOR::simular(const std::vector<bool3S>& in_port);
+///FIM PORT NXOR
+
+//falta_fazer(); será que ainda falta algo aqui?
 
