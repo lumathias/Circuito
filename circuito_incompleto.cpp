@@ -46,11 +46,12 @@ ptr_Port allocPort(std::string& Tipo)
 /// Inicializacao e finalizacao
 /// ***********************
 Circuito::Circuito(){} //construtor default
-Circuito::Circuito(const Circuito& C){} //construtor por copia
-Circuito::Circuito(Circuito&& C){} //construtor por movimento
-Circuito::~Circuito(){} //destrutor
 
-falta_fazer();
+Circuito::Circuito(const Circuito& C){} //construtor por copia
+
+Circuito::Circuito(Circuito&& C){} //construtor por movimento
+
+Circuito::~Circuito(){} //destrutor
 
 /// ***********************
 /// Funcoes de testagem

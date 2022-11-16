@@ -47,6 +47,7 @@ bool Port::validIndex(int I) const
   return (I>=0 && I<getNumInputs());
 }
 
+
 // Retorna true se a porta eh valida (estah com todos os dados corretos):
 // - validNumInputs eh true
 // - Todas as id de entrada da porta sao diferentes de zero.

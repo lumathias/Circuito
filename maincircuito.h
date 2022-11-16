@@ -6,6 +6,7 @@
 #include "newcircuito.h"
 #include "modificarporta.h"
 #include "modificarsaida.h"
+#include "circuito.h"
 
 /* ======================================================================== *
  * ESSA EH A CLASSE QUE REPRESENTA A TELA PRINCIPAL DO APLICATIVO           *
@@ -81,6 +82,7 @@ private:
   NewCircuito *newCircuito;        // Caixa de dialogo para criar um novo circuito
   ModificarPorta *modificarPorta;  // Caixa de dialogo para modificar uma porta
   ModificarSaida *modificarSaida;  // Caixa de dialogo para modificar uma saida
+  Circuito *C;
 
   // Redimensiona todas as tabelas e reexibe todos os valores da barra de status
   // Essa funcao deve ser chamada sempre que mudar o circuito (digitar ou ler de arquivo)
