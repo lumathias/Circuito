@@ -97,9 +97,10 @@ void MainCircuito::slotModificarPorta(int IdPort, QString TipoPort, int NumInput
   // Aqui devem ser chamados metodos da classe Circuito que altere a porta cuja
   // id eh IdPort para que as origens de suas entradas sejam dadas pelas ids em IdInput#
   // Soh levar em conta os parametros de entrada que sejam >0
-  /*for (int i = 0; i<=3; i++){
-    C->setId_inPort(IdPort, i, );   //perguntar ao prof
-  }*/
+  if (NumInputsPort>0) C->setId_inPort(IdPort, 0, IdInput0);
+  if (NumInputsPort>1) C->setId_inPort(IdPort, 1, IdInput1);
+  if (NumInputsPort>2) C->setId_inPort(IdPort, 2, IdInput2);
+  if (NumInputsPort>3) C->setId_inPort(IdPort, 3, IdInput3);
 
   // Depois de alterada, deve ser reexibida a porta correspondente e limpa a tabela verdade
   showPort(IdPort-1);
