@@ -14,12 +14,12 @@
 // inicializa out_port com UNDEF
 Port::Port(int NI):id_in(NI,0),out_port(bool3S::UNDEF)
 {
-  // Nao pode testar o parametro NI com validNumInputs pq o construtor de
-  // Port eh chamado pelo construtor de Port_NOT, mas sem que ocorra
-  // polimorfismo nesse momento.
-  // Entao seria chamada a versao base de validNumInputs, que testaria se
-  // estah entre 2 e 4 e geraria erro ao criar portas NOT
-  /*
+    // Nao pode testar o parametro NI com validNumInputs pq o construtor de
+    // Port eh chamado pelo construtor de Port_NOT, mas sem que ocorra
+    // polimorfismo nesse momento.
+    // Entao seria chamada a versao base de validNumInputs, que testaria se
+    // estah entre 2 e 4 e geraria erro ao criar portas NOT
+    /*
   if (!validNumInputs(NI))
   {
     id_in.clear();
@@ -38,13 +38,13 @@ Port::~Port() {}
 // (na funcao correspondente na porta NOT, substituir por NI==1)
 bool Port::validNumInputs(int NI) const
 {
-  return (NI>=2);
+    return (NI>=2);
 }
 
 // Retorna true se um indice (qual entrada da porta) eh valido (entre 0 e NumInputs-1)
 bool Port::validIndex(int I) const
 {
-  return (I>=0 && I<getNumInputs());
+    return (I>=0 && I<getNumInputs());
 }
 
 
@@ -53,9 +53,9 @@ bool Port::validIndex(int I) const
 // - Todas as id de entrada da porta sao diferentes de zero.
 bool Port::valid() const
 {
-  if (!validNumInputs(getNumInputs())) return false;
-  for (int i=0; i<getNumInputs(); i++) if (id_in.at(i) == 0) return false;
-  return true;
+    if (!validNumInputs(getNumInputs())) return false;
+    for (int i=0; i<getNumInputs(); i++) if (id_in.at(i) == 0) return false;
+    return true;
 }
 
 // Testa se a dimensao do vetor eh igual ao numero de entradas da porta; se não
@@ -63,9 +63,9 @@ bool Port::valid() const
 // Deve ser utilizada antes de simular uma porta
 bool Port::testValidSizeInputs(const std::vector<bool3S>& in_port)
 {
-  if (int(in_port.size()) == getNumInputs()) return true;
-  out_port = bool3S::UNDEF;
-  return false;
+    if (int(in_port.size()) == getNumInputs()) return true;
+    out_port = bool3S::UNDEF;
+    return false;
 }
 
 /// ***********************
@@ -75,21 +75,21 @@ bool Port::testValidSizeInputs(const std::vector<bool3S>& in_port)
 // Caracteristicas da porta
 int Port::getNumInputs() const
 {
-  return id_in.size();
+    return id_in.size();
 }
 
 // Saida logica da porta
 bool3S Port::getOutput() const
 {
-  return out_port;
+    return out_port;
 }
 
 // Depois de testar o parametro (validIndex), retorna o valor de id_in[I]
 // ou 0 se indice invalido
 int Port::getId_in(int I) const
 {
-  if (!validIndex(I)) return 0;
-  return id_in.at(I);
+    if (!validIndex(I)) return 0;
+    return id_in.at(I);
 }
 
 /// ***********************
@@ -102,24 +102,24 @@ int Port::getId_in(int I) const
 // do array id_in com valor invalido (0)
 void Port::setNumInputs(int NI)
 {
-  if (validNumInputs(NI) && NI!=getNumInputs())
-  {
-    id_in.resize(NI);
-    for (int i=0; i<getNumInputs(); i++) id_in.at(i) = 0;
-  }
+    if (validNumInputs(NI) && NI!=getNumInputs())
+    {
+        id_in.resize(NI);
+        for (int i=0; i<getNumInputs(); i++) id_in.at(i) = 0;
+    }
 }
 
 // Fixa o valor logico da saida da porta (?, F, T)
 void Port::setOutput(bool3S S)
 {
-  out_port=S;
+    out_port=S;
 }
 
 // Fixa a origem do sinal da I-esima entrada da porta como sendo Id
 // Depois de testar os parametros (validIndex, Id!=0), faz: id_in[I] <- Id
 void Port::setId_in(int I, int Id)
 {
-  if (validIndex(I) && Id!=0) id_in.at(I) = Id;
+    if (validIndex(I) && Id!=0) id_in.at(I) = Id;
 }
 
 /// ***********************
@@ -141,23 +141,23 @@ void Port::setId_in(int I, int Id)
 // digitar apropriado para o tipo de porta.
 void Port::digitar()
 {
-  int Nin;
-  do
-  {
-    std::cout << "  Numero de entradas da porta: ";
-    std::cin >> Nin;
-    if (this->validNumInputs(Nin))
+    int Nin;
+    do
     {
-      id_in.resize(Nin);
-      for (int i=0; i<getNumInputs(); i++)
-      {
-        std::cout << "  Entrada " << i << " da porta: ";
-        std::cin >> id_in.at(i);
-      }
+        std::cout << "  Numero de entradas da porta: ";
+        std::cin >> Nin;
+        if (this->validNumInputs(Nin))
+        {
+            id_in.resize(Nin);
+            for (int i=0; i<getNumInputs(); i++)
+            {
+                std::cout << "  Entrada " << i << " da porta: ";
+                std::cin >> id_in.at(i);
+            }
+        }
+        else id_in.clear();
     }
-    else id_in.clear();
-  }
-  while(!valid());
+    while(!valid());
 }
 
 // Leh uma porta da stream ArqI. Deve fixar o valor:
@@ -173,28 +173,28 @@ void Port::digitar()
 // apropriado para o tipo de porta.
 bool Port::ler(std::istream& ArqI)
 {
-  try
-  {
-    int Nin;
-    char c;
-
-    ArqI >> Nin;
-    if (!ArqI.good() || !validNumInputs(Nin)) throw 1;
-    id_in.resize(Nin);
-    ArqI >> c;
-    if (!ArqI.good() || c != ':') throw 2;
-    for (int i=0; i<getNumInputs(); i++)
+    try
     {
-      ArqI >> id_in.at(i);
-      if (!ArqI.good() || id_in.at(i) == 0) throw 3;
+        int Nin;
+        char c;
+
+        ArqI >> Nin;
+        if (!ArqI.good() || !validNumInputs(Nin)) throw 1;
+        id_in.resize(Nin);
+        ArqI >> c;
+        if (!ArqI.good() || c != ':') throw 2;
+        for (int i=0; i<getNumInputs(); i++)
+        {
+            ArqI >> id_in.at(i);
+            if (!ArqI.good() || id_in.at(i) == 0) throw 3;
+        }
     }
-  }
-  catch (int erro)
-  {
-    id_in.clear();
-    return false;
-  }
-  return true;
+    catch (int erro)
+    {
+        id_in.clear();
+        return false;
+    }
+    return true;
 }
 
 // Imprime a porta na ostrem ArqO (cout ou uma stream de arquivo, tanto faz)
@@ -210,20 +210,20 @@ bool Port::ler(std::istream& ArqI)
 // ser encadeada
 std::ostream& Port::imprimir(std::ostream& ArqO) const
 {
-  ArqO << this->getName() << ' ';
-  ArqO << getNumInputs() << ':';
-  for (int j=0; j<getNumInputs(); j++)
-  {
-    ArqO << ' ' << id_in.at(j);
-  }
-  return ArqO;
+    ArqO << this->getName() << ' ';
+    ArqO << getNumInputs() << ':';
+    for (int j=0; j<getNumInputs(); j++)
+    {
+        ArqO << ' ' << id_in.at(j);
+    }
+    return ArqO;
 }
 
 // Operador << com comportamento polimorfico
 // Serve para todas as ports (NO, AND, NOR, etc.)
 std::ostream& operator<<(std::ostream& O, const Port& X)
 {
-  return X.imprimir(O);
+    return X.imprimir(O);
 };
 
 ///PORT NOT
@@ -239,25 +239,20 @@ std::string Port_NOT::getName() const{
 }
 
 ///Falta algo aqui
+bool Port_NOT::validNumInputs(int NI) const{
 
-//Falta implementar/entender o simular
+}
+
+void Port_NOT::digitar(){
+
+}
+
 void Port_NOT::simular(const std::vector<bool3S>& in_port){
-    do{
-        tudo_def = true;
-        alguma_def = false;
-        for(int i = 0; i<Port_NOT.getNumInputs(); i++){
-            if(ports[i].out_port==UNDEF){
-                for(int i = 0; i<ports[i].N_in; j++){
-                    id = ports[i].id_in[j];
-                    if(id>0) in_port[j] = ports[id-1].out_port;
-                    else in_port[j] = in_circ[-id-1];
-                }
-                ports[i].simular(in_port);
-                if(ports[i].out_port==UNDEF) tudo_def = false;
-                else alguma_def = true;
-            }
-        }
-    }while(!tudo_def && alguma_def);
+    if(in_port.size() == unsigned(getNumInputs())){
+        // SIMULAÇÃO DA PORTA:
+        // PORTA NOT
+        out_port = ~in_port[0];
+    }else return;
 }
 ///FIM PORT NOT
 
@@ -273,8 +268,14 @@ std::string Port_AND::getName() const{
     return "AN";
 }
 
-//Falta implementar o simular
-void Port_AND::simular(const std::vector<bool3S>& in_port);
+void Port_AND::simular(const std::vector<bool3S>& in_port){
+    if(in_port.size() == unsigned(getNumInputs())){
+        out_port = in_port[0];
+        for(unsigned i=1; i < in_port.size(); i++){
+            out_port = out_port&in_port[i];
+        }
+    }else return;
+}
 ///FIM PORT AND
 
 ///PORT NAND
@@ -289,8 +290,14 @@ std::string Port_NAND::getName() const{
     return "NA";
 }
 
-//Falta implementar o simular
-void Port_NAND::simular(const std::vector<bool3S>& in_port);
+void Port_NAND::simular(const std::vector<bool3S>& in_port){
+    if(in_port.size() == unsigned(getNumInputs())){
+        out_port = ~in_port[0];
+        for(unsigned i=1; i < in_port.size(); i++){
+            out_port = ~(out_port&in_port[i]);
+        }
+    }else return;
+}
 ///FIM PORT NAND
 
 ///PORT OR
@@ -306,7 +313,14 @@ std::string Port_OR::getName() const{
 }
 
 //Falta implementar o simular
-void Port_OR::simular(const std::vector<bool3S>& in_port);
+void Port_OR::simular(const std::vector<bool3S>& in_port){
+    if(in_port.size() == unsigned(getNumInputs())){
+        out_port = in_port[0];
+        for(unsigned i=1; i < in_port.size(); i++){
+            out_port = out_port|in_port[i];
+        }
+    }else return;
+}
 ///FIM PORT OR
 
 ///PORT NOR
@@ -322,7 +336,14 @@ std::string Port_NOR::getName() const{
 }
 
 //Falta implementar o simular
-void Port_NOR::simular(const std::vector<bool3S>& in_port);
+void Port_NOR::simular(const std::vector<bool3S>& in_port){
+    if(in_port.size() == unsigned(getNumInputs())){
+        out_port = ~in_port[0];
+        for(unsigned i=1; i < in_port.size(); i++){
+            out_port = ~(out_port|in_port[i]);
+        }
+    }else return;
+}
 ///FIM PORT NOR
 
 ///PORT XOR
@@ -338,7 +359,14 @@ std::string Port_XOR::getName() const{
 }
 
 //Falta implementar o simular
-void Port_XOR::simular(const std::vector<bool3S>& in_port);
+void Port_XOR::simular(const std::vector<bool3S>& in_port){
+    if(in_port.size() == unsigned(getNumInputs())){
+        out_port = in_port[0];
+        for(unsigned i=1; i < in_port.size(); i++){
+            out_port = out_port^in_port[i];
+        }
+    }else return;
+}
 ///FIM PORT XOR
 
 ///PORT NXOR
@@ -354,8 +382,13 @@ std::string Port_NXOR::getName() const{
 }
 
 //Falta implementar o simular
-void Port_NXOR::simular(const std::vector<bool3S>& in_port);
+void Port_NXOR::simular(const std::vector<bool3S>& in_port){
+    if(in_port.size() == unsigned(getNumInputs())){
+        out_port = ~in_port[0];
+        for(unsigned i=1; i < in_port.size(); i++){
+            out_port = ~(out_port^in_port[i]);
+        }
+    }else return;
+}
 ///FIM PORT NXOR
-
-//falta_fazer(); será que ainda falta algo aqui?
 
