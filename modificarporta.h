@@ -1,6 +1,9 @@
 #ifndef MODIFICARPORTA_H
 #define MODIFICARPORTA_H
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 #include <QDialog>
 
 /* ======================================================================== *

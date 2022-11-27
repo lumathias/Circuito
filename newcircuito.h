@@ -1,6 +1,9 @@
 #ifndef NEWCIRCUITO_H
 #define NEWCIRCUITO_H
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 #include <QDialog>
 
 /* =============================================================================== *

@@ -2,7 +2,6 @@
 #include "ui_maincircuito.h"
 #include "modificarporta.h"
 #include "modificarsaida.h"
-#include "bool3S.h"
 #include <time.h>
 #include <QStringList>
 #include <QString>
@@ -11,6 +10,11 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include "bool3S.h"
+#include "circuito.h"
+
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
 
 MainCircuito::MainCircuito(QWidget *parent) : QMainWindow(parent)
 ,ui(new Ui::MainCircuito)
@@ -131,7 +135,7 @@ void MainCircuito::redimensionaTabelas()
 
 
   // Variaveis auxiliares
-  QString texto;
+  //QString texto;
   QLabel *prov;
   int i;
 
@@ -225,14 +229,14 @@ void MainCircuito::showPort(unsigned i)
   // Testa se indice i eh valido, comparando com num portas consultado da classe Circuito
   // Provisoriamente, o teste eh sempre falso
 
-  bool indice_valido=C->validIdInput(i);
+  bool indice_valido=C->validIdInput(i+1);
   if (!indice_valido) return;  // Encerra a funcao sem fazer nada
 
   // Esses valores (namePort, numInputsPort)
   // devem ser lidos a partir de metodos de consulta da classe Circuito
   // Provisoriamente, estao sendo inicializados com valores nulos ou invalidos
-  QString namePort="??";
-  int numInputsPort=0;
+  QString namePort = QString::fromStdString(C->getNamePort(i+1));
+  int numInputsPort=C->getNumInputsPort(i+1);
 
   // Variaveis auxiliares
   QLabel *prov;
@@ -245,7 +249,7 @@ void MainCircuito::showPort(unsigned i)
   // Provisoriamente, estao sendo inicializados com valores nulos
   for (j=0; j<numInputsPort; j++)
   {
-    idInputPort[j] = 0;
+    idInputPort[j] = C->getId_inPort(i+1, j);
   }
 
   // Cria e define valores dos widgets da linha da tabela que corresponde aa porta
@@ -267,6 +271,7 @@ void MainCircuito::showPort(unsigned i)
     // Coluna 2 em diante
     prov = new QLabel;
     prov->setAlignment(Qt::AlignCenter);
+    std::cout << numInputsPort;
     if (j<numInputsPort) prov->setNum(idInputPort[j]);
     ui->tablePortas->setCellWidget(i,2+j,prov);
   }
@@ -280,12 +285,12 @@ void MainCircuito::showOutput(unsigned i)
   // Testa se indice i eh valido, comparando com num saidas consultado da classe Circuito
   // Provisoriamente, o teste eh sempre falso
 
-  bool indice_valido=C->validIdOutput(i);
+  bool indice_valido=C->validIdOutput(i+1);
   if (!indice_valido) return;  // Encerra a funcao sem fazer nada
 
   // Esse valor (idOutput) deve ser lido a partir de metodos de consulta da classe Circuito
   // Provisoriamente, estah sendo inicializado com valor nulo
-  int idOutput=0;
+  int idOutput=C->getIdOutput(i+1);
 
   // Variavel auxiliar
   QLabel *prov;
@@ -457,7 +462,7 @@ void MainCircuito::on_actionGerar_tabela_triggered()
 
     // Chama o metodo de simulacao da classe Circuito //
 
-    // bool vdd = C->simular(in_circ); //perguntar ao prof
+    C->simular(in_circ);
 
     // Exibe a saida correspondente aa i-esima combinacao de entrada //
 
@@ -525,7 +530,6 @@ void MainCircuito::on_tableSaidas_activated(const QModelIndex &index)
 
   // Esse valor (idOrigemSaida)
   // deve ser lido a partir de metodo de consulta da classe Circuito
-  // ###  FALTA FAZER ###
   // Provisoriamente, estah sendo inicializado com valor nulo
   int idOrigemSaida = C->getIdOutput(idSaida);
 

@@ -1,6 +1,9 @@
 #ifndef _CIRCUITO_H_
 #define _CIRCUITO_H_
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 #include <iostream>
 #include <string>
 #include <vector>

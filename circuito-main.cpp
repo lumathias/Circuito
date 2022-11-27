@@ -2,6 +2,9 @@
 #include <string>
 #include "circuito.h"
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 using namespace std;
 
 void gerarTabela(Circuito& C);

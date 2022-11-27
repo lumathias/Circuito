@@ -1,7 +1,9 @@
 #include "modificarsaida.h"
 #include "ui_modificarsaida.h"
-#include "maincircuito.h"
 #include <QPushButton>
+
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
 
 ModificarSaida::ModificarSaida(QWidget *parent) :
   QDialog(parent),

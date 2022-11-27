@@ -1,6 +1,9 @@
 #ifndef MODIFICARSAIDA_H
 #define MODIFICARSAIDA_H
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 #include <QDialog>
 
 /* ======================================================================== *

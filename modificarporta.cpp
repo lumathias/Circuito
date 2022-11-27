@@ -1,8 +1,10 @@
-#include "maincircuito.h"
 #include "modificarporta.h"
 #include "ui_modificarporta.h"
 #include <QPushButton>
 #include <string>
+
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
 
 ModificarPorta::ModificarPorta(QWidget *parent) :
   QDialog(parent),

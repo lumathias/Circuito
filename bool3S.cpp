@@ -1,6 +1,9 @@
 #include <iostream>
 #include "bool3S.h"
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 using namespace std;
 
 //Os operadores logicos para a classe bool3S

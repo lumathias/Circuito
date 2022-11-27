@@ -1,6 +1,9 @@
 #ifndef MAINCIRCUITO_H
 #define MAINCIRCUITO_H
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 #include <QMainWindow>
 #include <QLabel>
 #include "newcircuito.h"

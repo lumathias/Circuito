@@ -1,6 +1,9 @@
 #ifndef _PORT_H_
 #define _PORT_H_
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 #include <iostream>
 #include <string>
 #include <vector>

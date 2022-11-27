@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
     bool3S.cpp \
-    circuito-main.cpp \
     circuito_incompleto.cpp \
     maincircuito.cpp \
     modificarporta.cpp \

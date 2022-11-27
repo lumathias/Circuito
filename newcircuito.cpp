@@ -3,6 +3,9 @@
 #include "maincircuito.h"
 #include <QMessageBox>
 
+//Autores:  Luisa de Moura Galvão Mathias
+//          Marcos Paulo Barbosa
+
 NewCircuito::NewCircuito(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NewCircuito)
